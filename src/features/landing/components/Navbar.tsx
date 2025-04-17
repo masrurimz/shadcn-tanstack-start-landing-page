@@ -1,4 +1,5 @@
-import { ChevronsDown, Menu } from "lucide-react";
+import { Link, useRouter } from "@tanstack/react-router";
+import { ChevronsDown, Menu, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import ThemeToggle from "~/components/ThemeToggle";
 import { Button } from "~/components/ui/button";
@@ -19,6 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
+import authClient from "~/libs/auth/auth-client";
 import GithubIcon from "./GithubIcon";
 
 interface RouteProps {
@@ -31,8 +33,10 @@ interface FeatureProps {
   description: string;
 }
 
-const Navbar = () => {
+const Navbar = ({ user }: { user?: { name: string } }) => {
   const [mode] = useState("dark");
+  const router = useRouter();
+
   useEffect(() => {
     // Set initial dark mode
     const root = window.document.documentElement;
@@ -63,6 +67,11 @@ const Navbar = () => {
       description: "Make your lead capture form visually appealing and strategically.",
     },
   ];
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    await router.invalidate();
+  };
 
   return (
     <header
@@ -111,6 +120,32 @@ const Navbar = () => {
                     </a>
                   </Button>
                 ))}
+
+                {user ? (
+                  <>
+                    <Button variant="ghost" className="justify-start text-base" asChild>
+                      <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                        Dashboard
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      className="justify-start text-base"
+                      onClick={() => {
+                        handleSignOut();
+                        setIsOpen(false);
+                      }}
+                    >
+                      Sign out
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="default" className="justify-start text-base" asChild>
+                    <Link to="/signin" onClick={() => setIsOpen(false)}>
+                      Sign in
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
 
@@ -172,18 +207,38 @@ const Navbar = () => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <div className="hidden lg:flex">
+      <div className="hidden gap-2 items-center lg:flex">
         <ThemeToggle size="sm" variant="ghost" className="justify-start" />
 
-        <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
-          <a
-            aria-label="View on GitHub"
-            href="https://github.com/leoMirandaa/shadcn-vue-landing-page.git"
-            target="_blank"
-          >
-            <GithubIcon className="w-5 h-5" />
-          </a>
-        </Button>
+        {user ? (
+          <div className="flex gap-2 items-center">
+            <Button size="sm" variant="ghost" aria-label="User Profile">
+              <User className="w-5 h-5" />
+              <span className="ml-1">{user.name}</span>
+            </Button>
+            <Button size="sm" asChild>
+              <Link to="/dashboard">Dashboard</Link>
+            </Button>
+            <Button onClick={handleSignOut} size="sm" variant="destructive">
+              Sign out
+            </Button>
+          </div>
+        ) : (
+          <>
+            <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
+              <a
+                aria-label="View on GitHub"
+                href="https://github.com/leoMirandaa/shadcn-vue-landing-page.git"
+                target="_blank"
+              >
+                <GithubIcon className="w-5 h-5" />
+              </a>
+            </Button>
+            <Button size="sm" asChild>
+              <Link to="/signin">Sign in</Link>
+            </Button>
+          </>
+        )}
       </div>
     </header>
   );

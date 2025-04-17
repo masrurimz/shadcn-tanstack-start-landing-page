@@ -16,12 +16,17 @@ import Testimonials from "../features/landing/components/Testimonials";
 
 export const Route = createFileRoute("/landing")({
   component: RouteComponent,
+  loader: async ({ context }) => {
+    return { user: context.user };
+  },
 });
 
 function RouteComponent() {
+  const { user } = Route.useLoaderData();
+
   return (
     <>
-      <Navbar />
+      <Navbar user={user ?? undefined} />
       <Hero />
       <Sponsors />
       <Benefits />

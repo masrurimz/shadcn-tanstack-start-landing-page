@@ -6,31 +6,22 @@ import {
   ScriptOnce,
   Scripts,
 } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
-import { getWebRequest } from "@tanstack/react-start/server";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { Toaster } from "~/components/ui/toaster";
-import { authServer } from "~/libs/auth/auth-server";
+import { getUserFn } from "~/libs/auth/auth-session";
 import appCss from "~/styles/app.css?url";
-
-const getUser = createServerFn({ method: "GET" }).handler(async () => {
-  const { headers } = getWebRequest()!;
-  const session = await authServer.api.getSession({ headers });
-
-  return session?.user || null;
-});
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
-  user: Awaited<ReturnType<typeof getUser>>;
+  user: Awaited<ReturnType<typeof getUserFn>>;
 }>()({
   beforeLoad: async ({ context }) => {
     const user = await context.queryClient.fetchQuery({
       queryKey: ["user"],
-      queryFn: ({ signal }) => getUser({ signal }),
+      queryFn: ({ signal }) => getUserFn({ signal }),
     }); // we're using react-query for caching, see router.tsx
     return { user };
   },
