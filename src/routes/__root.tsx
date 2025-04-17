@@ -12,6 +12,7 @@ import { getWebRequest } from "@tanstack/react-start/server";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
+import { Toaster } from "~/components/ui/toaster";
 import { authServer } from "~/libs/auth/auth-server";
 import appCss from "~/styles/app.css?url";
 
@@ -76,6 +77,7 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 
         {children}
 
+        <Toaster />
         <ReactQueryDevtools buttonPosition="bottom-left" />
         <TanStackRouterDevtools position="bottom-right" />
 
