@@ -1,84 +1,115 @@
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+
 import {
-  BarChart,
-  BarChartHorizontal,
-  Calendar,
-  Database,
-  Globe,
-  Lock,
-  MessageSquare,
-  Users,
+  BadgeCheck,
+  Goal,
+  MessageCircle,
+  MousePointerClick,
+  Newspaper,
+  Paintbrush,
+  PictureInPicture,
+  TabletSmartphone,
 } from "lucide-react";
 
-const Features = () => {
-  const features = [
-    {
-      icon: <BarChart className="h-8 w-8" />,
-      title: "Advanced Analytics",
-      description:
-        "Gain insights into your business with powerful data visualization tools.",
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      title: "Team Collaboration",
-      description: "Work together seamlessly with real-time collaboration features.",
-    },
-    {
-      icon: <MessageSquare className="h-8 w-8" />,
-      title: "Integrated Chat",
-      description: "Communicate effectively with your team and clients in one place.",
-    },
-    {
-      icon: <Calendar className="h-8 w-8" />,
-      title: "Smart Scheduling",
-      description: "Optimize your time with AI-powered scheduling and reminders.",
-    },
-    {
-      icon: <Database className="h-8 w-8" />,
-      title: "Cloud Storage",
-      description: "Store and access your files securely from anywhere, anytime.",
-    },
-    {
-      icon: <Lock className="h-8 w-8" />,
-      title: "Advanced Security",
-      description: "Protect your data with enterprise-grade security features.",
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      title: "Global Accessibility",
-      description: "Access your workspace from any device, anywhere in the world.",
-    },
-    {
-      icon: <BarChartHorizontal className="h-8 w-8" />,
-      title: "Performance Tracking",
-      description: "Monitor and improve your business performance with detailed metrics.",
-    },
-  ];
+interface FeaturesProps {
+  icon: string;
+  title: string;
+  description: string;
+}
 
+const featureList: FeaturesProps[] = [
+  {
+    icon: "tabletSmartphone",
+    title: "Mobile Friendly",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, consectetur.",
+  },
+  {
+    icon: "badgeCheck",
+    title: "Social Proof",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Natus consectetur, odio ea accusamus aperiam.",
+  },
+  {
+    icon: "goal",
+    title: "Targeted Content",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. odio ea accusamus aperiam.",
+  },
+  {
+    icon: "pictureInPicture",
+    title: "Strong Visuals",
+    description:
+      "Lorem elit. A odio velit cum aliquam. Natus consectetur dolores, odio ea accusamus aperiam.",
+  },
+  {
+    icon: "mousePointerClick",
+    title: "Clear CTA",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing. odio ea accusamus consectetur.",
+  },
+  {
+    icon: "newspaper",
+    title: "Clear Headline",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur.",
+  },
+];
+
+const iconMap: Record<
+  string,
+  | typeof TabletSmartphone
+  | typeof BadgeCheck
+  | typeof Goal
+  | typeof PictureInPicture
+  | typeof Paintbrush
+  | typeof MousePointerClick
+  | typeof MessageCircle
+  | typeof Newspaper
+> = {
+  tabletSmartphone: TabletSmartphone,
+  badgeCheck: BadgeCheck,
+  goal: Goal,
+  pictureInPicture: PictureInPicture,
+  paintbrush: Paintbrush,
+  mousePointerClick: MousePointerClick,
+  messageCircle: MessageCircle,
+  newspaper: Newspaper,
+};
+
+const Features = () => {
   return (
-    <section className="bg-muted/30 py-16 md:py-24" id="features">
-      <div className="container px-4 md:px-6">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Powerful Features
-          </h2>
-          <p className="text-muted-foreground mt-4 text-xl">
-            Everything you need to manage and grow your business
-          </p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-background flex flex-col rounded-lg border p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="bg-primary/10 mb-4 inline-flex w-fit rounded-lg p-2">
-                {feature.icon}
-              </div>
-              <h3 className="mb-2 text-xl font-medium">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
-            </div>
-          ))}
-        </div>
+    <section id="features" className="container py-24 sm:py-32">
+      <h2 className="mb-2 text-lg tracking-wider text-center text-primary">Features</h2>
+
+      <h2 className="mb-4 text-3xl font-bold text-center md:text-4xl">
+        What Makes Us Different
+      </h2>
+
+      <h3 className="mx-auto mb-8 text-xl text-center text-muted-foreground md:w-1/2">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem fugiat, odit
+        similique quasi sint reiciendis quidem iure veritatis optio facere tenetur.
+      </h3>
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {featureList.map(({ icon, title, description }) => {
+          const Icon = iconMap[icon];
+          return (
+            <Card key={title} className="h-full border-0 shadow-none bg-background">
+              <CardHeader className="flex flex-col justify-center items-center">
+                <div className="p-2 mb-4 rounded-full ring-8 bg-primary/20 ring-primary/10">
+                  <Icon className="text-primary size-6" />
+                </div>
+
+                <CardTitle>{title}</CardTitle>
+              </CardHeader>
+
+              <CardContent className="text-center text-muted-foreground">
+                {description}
+              </CardContent>
+            </Card>
+          );
+        })}
       </div>
     </section>
   );

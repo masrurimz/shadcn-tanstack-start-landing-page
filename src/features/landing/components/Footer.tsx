@@ -1,103 +1,117 @@
-import { Link } from "@tanstack/react-router";
-import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
+import { ChevronsDown } from "lucide-react";
+import { Separator } from "~/components/ui/separator";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const footerLinks = [
-    {
-      title: "Product",
-      links: [
-        { name: "Features", href: "#features" },
-        { name: "Pricing", href: "#pricing" },
-        { name: "Testimonials", href: "#testimonials" },
-        { name: "FAQ", href: "#faq" },
-      ],
-    },
-    {
-      title: "Company",
-      links: [
-        { name: "About Us", href: "#about" },
-        { name: "Team", href: "#team" },
-        { name: "Careers", href: "#" },
-        { name: "Press", href: "#" },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Blog", href: "#" },
-        { name: "Documentation", href: "#" },
-        { name: "Community", href: "#community" },
-        { name: "Support", href: "#contact" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
-        { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" },
-        { name: "Cookie Policy", href: "#" },
-        { name: "Data Processing", href: "#" },
-      ],
-    },
-  ];
-
-  const socialLinks = [
-    { name: "Twitter", icon: <Twitter className="w-5 h-5" />, href: "#" },
-    { name: "Facebook", icon: <Facebook className="w-5 h-5" />, href: "#" },
-    { name: "Instagram", icon: <Instagram className="w-5 h-5" />, href: "#" },
-    { name: "LinkedIn", icon: <Linkedin className="w-5 h-5" />, href: "#" },
-    { name: "GitHub", icon: <Github className="w-5 h-5" />, href: "#" },
-  ];
-
   return (
-    <footer className="border-t bg-muted/40">
-      <div className="container px-4 py-12 md:px-6 md:py-16">
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-          <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center mb-4 space-x-2">
-              <span className="text-xl font-bold">Your Brand</span>
-            </Link>
-            <p className="mb-4 text-muted-foreground">
-              Transforming businesses with powerful and intuitive solutions.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="transition-colors text-muted-foreground hover:text-foreground"
-                  aria-label={link.name}
-                >
-                  {link.icon}
-                </a>
-              ))}
+    <footer id="footer" className="container py-24 pb-16 sm:py-32 sm:pb-24">
+      <div className="bg-muted/50 dark:bg-card rounded-2xl border p-10">
+        <div className="grid grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-4 xl:grid-cols-6">
+          <div className="col-span-full xl:col-span-2">
+            <a href="#" className="flex items-center font-bold">
+              <ChevronsDown className="from-primary via-primary/70 to-primary mr-2 h-9 w-9 rounded-lg border bg-linear-to-tr text-white" />
+
+              <h3 className="text-2xl">Shadcn-React</h3>
+            </a>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-bold">Contact</h3>
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Github
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Twitter
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Instagram
+              </a>
             </div>
           </div>
 
-          {footerLinks.map((category, index) => (
-            <div key={index}>
-              <h3 className="mb-4 font-medium">{category.title}</h3>
-              <ul className="space-y-2">
-                {category.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a
-                      href={link.href}
-                      className="transition-colors text-muted-foreground hover:text-foreground"
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-bold">Platforms</h3>
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                iOS
+              </a>
             </div>
-          ))}
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Android
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Web
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-bold">Help</h3>
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Contact Us
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                FAQ
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Feedback
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-bold">Socials</h3>
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Twitch
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Discord
+              </a>
+            </div>
+
+            <div>
+              <a href="#" className="opacity-60 hover:opacity-100">
+                Dribbble
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="pt-8 mt-12 text-center border-t text-muted-foreground">
-          <p>&copy; {currentYear} Your Company. All rights reserved.</p>
-        </div>
+        <Separator className="my-6" />
+        <section>
+          <h3>
+            &copy; 2024 Designed and developed by
+            <a
+              target="_blank"
+              href="https://github.com/leoMirandaa"
+              className="text-primary border-primary transition-all hover:border-b-2"
+            >
+              Leo Miranda
+            </a>
+          </h3>
+        </section>
       </div>
     </footer>
   );

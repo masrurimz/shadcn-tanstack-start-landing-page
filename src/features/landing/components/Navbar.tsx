@@ -116,7 +116,7 @@ const Navbar = () => {
 
             <SheetFooter className="flex-col justify-start items-start sm:flex-col">
               <Separator className="mb-2" />
-              <ThemeToggle />
+              <ThemeToggle size="sm" variant="ghost" className="justify-start" />
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -173,7 +173,7 @@ const Navbar = () => {
       </NavigationMenu>
 
       <div className="hidden lg:flex">
-        <ThemeToggle />
+        <ThemeToggle size="sm" variant="ghost" className="justify-start" />
 
         <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
           <a

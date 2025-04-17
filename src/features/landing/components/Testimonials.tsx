@@ -1,66 +1,138 @@
-import { Quote } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "~/components/ui/carousel";
+
+import { Star } from "lucide-react";
+
+interface ReviewProps {
+  image: string;
+  name: string;
+  userName: string;
+  comment: string;
+  rating: number;
+}
+
+const reviewList: ReviewProps[] = [
+  {
+    image: "https://github.com/shadcn.png",
+    name: "John Doe",
+    userName: "Product Manager",
+    comment:
+      "Wow React + Shadcn is awesome!. This template lets me change colors, fonts and images to match my brand identity. ",
+    rating: 5.0,
+  },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Sophia Collins",
+    userName: "Cybersecurity Analyst",
+    comment:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. ",
+    rating: 4.8,
+  },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Adam Johnson",
+    userName: "Chief Technology Officer",
+    comment:
+      "Lorem ipsum dolor sit amet,exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    rating: 4.9,
+  },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Ethan Parker",
+    userName: "Data Scientist",
+    comment:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    rating: 5.0,
+  },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Ava Mitchell",
+    userName: "IT Project Manager",
+    comment:
+      "Lorem ipsum dolor sit amet, tempor incididunt  aliqua. Ut enim ad minim veniam, quis nostrud incididunt consectetur adipiscing elit.",
+    rating: 5.0,
+  },
+  {
+    image: "https://github.com/shadcn.png",
+    name: "Isabella Reed",
+    userName: "DevOps Engineer",
+    comment:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    rating: 4.9,
+  },
+];
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      quote:
-        "The platform has completely transformed our workflow. We've seen a 40% increase in productivity within just two months.",
-      author: "Sarah Johnson",
-      position: "CTO, TechCorp",
-      image: "https://source.unsplash.com/random/100x100/?woman",
-    },
-    {
-      quote:
-        "Implementation was seamless and the support team was exceptional. This has been the best business decision we made all year.",
-      author: "Michael Chen",
-      position: "Operations Director, Innovate Inc",
-      image: "https://source.unsplash.com/random/100x100/?man",
-    },
-    {
-      quote:
-        "The analytics features alone have saved us thousands in consulting fees. The insights we've gained are invaluable.",
-      author: "Amanda Rodriguez",
-      position: "Marketing Manager, Growth Co",
-      image: "https://source.unsplash.com/random/100x100/?person",
-    },
-  ];
-
   return (
-    <section className="py-16 md:py-24" id="testimonials">
-      <div className="container px-4 md:px-6">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            What Our Clients Say
-          </h2>
-          <p className="text-muted-foreground mt-4 text-xl">
-            Hear from businesses that have transformed with our platform
-          </p>
-        </div>
-        <div className="grid gap-8 md:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="bg-background relative rounded-lg border p-6 shadow-sm"
-            >
-              <Quote className="text-primary/40 absolute top-6 right-6 h-8 w-8" />
-              <p className="mb-8 text-balance italic">"{testimonial.quote}"</p>
-              <div className="flex items-center">
-                <div className="mr-4 h-12 w-12 overflow-hidden rounded-full">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="font-medium">{testimonial.author}</h3>
-                  <p className="text-muted-foreground text-sm">{testimonial.position}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section id="testimonials" className="container py-24 sm:py-32">
+      <div className="mb-8 text-center">
+        <h2 className="text-primary mb-2 text-center text-lg tracking-wider">
+          Testimonials
+        </h2>
+
+        <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">
+          Hear What Our 1000+ Clients Say
+        </h2>
       </div>
+
+      <Carousel
+        opts={{
+          align: "start",
+        }}
+        className="relative mx-auto w-[80%] sm:w-[90%] lg:max-w-(--breakpoint-xl)"
+      >
+        <CarouselContent>
+          {reviewList.map((review) => (
+            <CarouselItem key={review.name} className="md:basis-1/2 lg:basis-1/3">
+              <Card className="bg-muted/50 dark:bg-card">
+                <CardContent className="pt-6 pb-0">
+                  <div className="flex gap-1 pb-6">
+                    <Star className="fill-primary text-primary size-4" />
+                    <Star className="fill-primary text-primary size-4" />
+                    <Star className="fill-primary text-primary size-4" />
+                    <Star className="fill-primary text-primary size-4" />
+                    <Star className="fill-primary text-primary size-4" />
+                  </div>
+                  &quot;{review.comment}&quot;
+                </CardContent>
+
+                <CardHeader>
+                  <div className="flex flex-row items-center gap-4">
+                    <Avatar>
+                      <AvatarImage
+                        src="https://www.radix-ui.com/logo.svg"
+                        alt="@radix-ui"
+                      />
+                      <AvatarFallback>SV</AvatarFallback>
+                    </Avatar>
+
+                    <div className="flex flex-col">
+                      <CardTitle className="text-lg">{review.name}</CardTitle>
+                      <CardDescription>{review.userName}</CardDescription>
+                    </div>
+                  </div>
+                </CardHeader>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </section>
   );
 };
