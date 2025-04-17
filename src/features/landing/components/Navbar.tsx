@@ -74,7 +74,7 @@ const Navbar = () => {
     >
       <a href="/" className="flex items-center text-lg font-bold">
         <ChevronsDown className="mr-2 w-9 h-9 text-white bg-gradient-to-tr rounded-lg border from-primary via-primary/70 to-primary" />
-        ShadcnVue
+        ShadcnTanStart
       </a>
 
       {/* Mobile */}
