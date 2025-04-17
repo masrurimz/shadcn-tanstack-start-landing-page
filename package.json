@@ -12,7 +12,7 @@
     "deps": "pnpm dlx npm-check-updates@latest --interactive --format group",
     "ui": "pnpm dlx shadcn@latest",
     "auth": "pnpm dlx @better-auth/cli@latest",
-    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --y --output ./src/lib/server/schema/auth.schema.ts && prettier --write ./src/lib/server/schema/auth.schema.ts"
+    "auth:generate": "pnpm dlx @better-auth/cli@latest generate --y --config ./src/libs/auth/auth-server.ts --output ./src/server/schema/auth.schema.ts && prettier --write ./src/server/schema/auth.schema.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",

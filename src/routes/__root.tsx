@@ -12,12 +12,12 @@ import { getWebRequest } from "@tanstack/react-start/server";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
-import { auth } from "~/lib/server/auth";
-import appCss from "~/lib/styles/app.css?url";
+import { authServer } from "~/libs/auth/auth-server";
+import appCss from "~/styles/app.css?url";
 
 const getUser = createServerFn({ method: "GET" }).handler(async () => {
   const { headers } = getWebRequest()!;
-  const session = await auth.api.getSession({ headers });
+  const session = await authServer.api.getSession({ headers });
 
   return session?.user || null;
 });

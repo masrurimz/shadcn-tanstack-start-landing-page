@@ -1,5 +1,5 @@
 import { Link, Outlet, createFileRoute, redirect } from "@tanstack/react-router";
-import { Button } from "~/lib/components/ui/button";
+import { Button } from "~/components/ui/button";
 
 export const Route = createFileRoute("/dashboard")({
   component: DashboardLayout,
@@ -18,9 +18,9 @@ function DashboardLayout() {
   return (
     <div className="flex flex-col gap-4 p-4">
       <h1 className="text-4xl font-bold">Dashboard Layout</h1>
-      <div className="flex items-center gap-2">
+      <div className="flex gap-2 items-center">
         This is a protected layout:
-        <pre className="bg-card text-card-foreground rounded-md border p-1">
+        <pre className="p-1 rounded-md border bg-card text-card-foreground">
           routes/dashboard/route.tsx
         </pre>
       </div>
