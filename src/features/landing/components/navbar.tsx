@@ -21,7 +21,7 @@ import {
   SheetTrigger,
 } from "~/components/ui/sheet";
 import authClient from "~/libs/auth/auth-client";
-import GithubIcon from "./GithubIcon";
+import GithubIcon from "./github-icon";
 
 interface RouteProps {
   href: string;
@@ -82,7 +82,7 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
       } bg-card sticky top-5 z-40 mx-auto flex w-[90%] items-center justify-between rounded-2xl border p-2 shadow-md md:w-[70%] lg:w-[75%] lg:max-w-screen-xl`}
     >
       <a href="/" className="flex items-center text-lg font-bold">
-        <ChevronsDown className="mr-2 w-9 h-9 text-white bg-gradient-to-tr rounded-lg border from-primary via-primary/70 to-primary" />
+        <ChevronsDown className="from-primary via-primary/70 to-primary mr-2 h-9 w-9 rounded-lg border bg-gradient-to-tr text-white" />
         ShadcnTanStart
       </a>
 
@@ -95,13 +95,13 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
 
           <SheetContent
             side="left"
-            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card"
+            className="bg-card flex flex-col justify-between rounded-tr-2xl rounded-br-2xl"
           >
             <div>
               <SheetHeader className="mb-4 ml-4">
                 <SheetTitle className="flex items-center">
                   <a href="/" className="flex items-center">
-                    <ChevronsDown className="mr-2 w-9 h-9 text-white bg-gradient-to-tr rounded-lg border from-primary/70 via-primary to-primary/70" />
+                    <ChevronsDown className="from-primary/70 via-primary to-primary/70 mr-2 h-9 w-9 rounded-lg border bg-gradient-to-tr text-white" />
                     ShadcnVue
                   </a>
                 </SheetTitle>
@@ -149,7 +149,7 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
               </div>
             </div>
 
-            <SheetFooter className="flex-col justify-start items-start sm:flex-col">
+            <SheetFooter className="flex-col items-start justify-start sm:flex-col">
               <Separator className="mb-2" />
               <ThemeToggle size="sm" variant="ghost" className="justify-start" />
             </SheetFooter>
@@ -161,7 +161,7 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
       <NavigationMenu className="hidden lg:block">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="text-base bg-card">
+            <NavigationMenuTrigger className="bg-card text-base">
               Features
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -169,15 +169,15 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
                 <img
                   src="https://www.radix-vue.com/logo.svg"
                   alt="Beach"
-                  className="object-cover w-full h-full rounded-md"
+                  className="h-full w-full rounded-md object-cover"
                 />
                 <ul className="flex flex-col gap-2">
                   {featureList.map((feature) => (
                     <li
                       key={feature.title}
-                      className="p-3 text-sm rounded-md hover:bg-muted"
+                      className="hover:bg-muted rounded-md p-3 text-sm"
                     >
-                      <p className="mb-1 font-semibold leading-none text-foreground">
+                      <p className="text-foreground mb-1 leading-none font-semibold">
                         {feature.title}
                       </p>
                       <p className="text-muted-foreground line-clamp-2">
@@ -207,13 +207,13 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <div className="hidden gap-2 items-center lg:flex">
+      <div className="hidden items-center gap-2 lg:flex">
         <ThemeToggle size="sm" variant="ghost" className="justify-start" />
 
         {user ? (
-          <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-2">
             <Button size="sm" variant="ghost" aria-label="User Profile">
-              <User className="w-5 h-5" />
+              <User className="h-5 w-5" />
               <span className="ml-1">{user.name}</span>
             </Button>
             <Button size="sm" asChild>
@@ -231,7 +231,7 @@ const Navbar = ({ user }: { user?: { name: string } }) => {
                 href="https://github.com/leoMirandaa/shadcn-vue-landing-page.git"
                 target="_blank"
               >
-                <GithubIcon className="w-5 h-5" />
+                <GithubIcon className="h-5 w-5" />
               </a>
             </Button>
             <Button size="sm" asChild>
